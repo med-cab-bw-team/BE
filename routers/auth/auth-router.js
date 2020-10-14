@@ -13,7 +13,10 @@ router.post('/register', validateUser, (req, res) => {
     .then((saved) => {
       res.status(201).json({
         message: "The user has been saved to the system",
-        saved
+        user: {
+          username: saved.username,
+          email: saved.email
+        }
       })
     })
     .catch((err) => {
