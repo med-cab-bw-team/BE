@@ -9,7 +9,7 @@ module.exports = {
 }
 
 function find() {
-    return knex('users').select('id', 'username', 'password')
+    return knex('users').select('id', 'username', 'password', 'email')
 }
 
 function findBy(filter) {
