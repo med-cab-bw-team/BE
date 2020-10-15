@@ -14,6 +14,7 @@ router.post('/register', validateUser, (req, res) => {
       res.status(201).json({
         message: "The user has been saved to the system",
         user: {
+          id: saved.id,
           username: saved.username,
           email: saved.email
         }
@@ -51,6 +52,8 @@ router.post('/login', (req, res) => {
       })
     })
 });
+
+
 
 function generateToken(user){
   const payload = {

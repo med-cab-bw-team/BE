@@ -4,12 +4,16 @@ module.exports = {
     find,
     findBy,
     add,
-    findById
-
+    findById,
+    update
 }
 
 function find() {
-    return knex('users').select('id', 'username', 'password', 'email')
+    return knex('users').select('id', 'username', 'email')
+}
+
+function findById(id) {
+    return knex('users').where({id}).first();
 }
 
 function findBy(filter) {
@@ -21,6 +25,8 @@ async function add(user) {
     return findById(id)
 }
 
-function findById(id) {
-    return knex('users').where({id}).first();
+function update(changes, id) {
+    return(
+        knex('users').where({ id }).update(changes)
+    )
 }
