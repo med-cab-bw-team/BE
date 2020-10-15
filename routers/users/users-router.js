@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Users = require('../users/users-model.js');
+const validateUser = require('../auth/validate-user.js');
 
 
 router.get('/', async (req, res) => {
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
         })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', validateUser, (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 

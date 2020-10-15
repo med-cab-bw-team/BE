@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const Users = require('../users/users-model');
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../../config/secrets.js');
+const validateUser = require('../auth/validate-user.js');
 
 router.post('/register', validateUser, (req, res) => {
   let user = req.body
@@ -74,23 +75,6 @@ function generateToken(user){
     expiresIn: '1h'
   }
   return jwt.sign(payload, jwtSecret, options)
-}
-
-function validateUser(req, res, next) {
-  const data = req.body;
-  !data ? res.status(400).json({
-    message: "Missing required fields"
-  })
-  : !data.username ? res.status(400).json({
-    message: "username is a required field"
-  })
-  : !data.password ? res.status(400).json({
-    message: "password is a required field"
-  })
-  : !data.email ? res.status(400).json({
-    message: "email is a required field"
-  })
-  : next()
 }
 
 module.exports = router;
