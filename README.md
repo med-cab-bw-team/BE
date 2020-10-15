@@ -64,6 +64,7 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 |---        |---        |---                    |---                            |
 | `users`   | POST      |`/api/auth/register`   | Register a new user           |
 | `users`   | POST      |`/api/auth/login`      | Logs in a registered user     |
+
 <br><br>
 
 # **Register:** `/api//auth/register/`
@@ -78,6 +79,7 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 |`password`             | string    | Yes               |                                   |
 |`currentCity`          | string    | No                |                                   |
 |`state_abbreviation`   | string    | Yes               |_2 Letter State Abbreviation_      |
+
 <br>
 
 ### **Code Example**:
@@ -112,6 +114,7 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 |---                    |---        |---                |---                                |
 | `username`            | string    | Yes               |                                   |
 | `password`            | string    | Yes               |                                   |
+
 <br>
 
 ### **Code Example**:
@@ -141,6 +144,7 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 |---        |---        |---                    |---                                |
 | `users`   | GET       |`/api/users/`          | Returns a list of users           |
 | `users`   | PUT       |`/api/users/:id`       | Updates a user with specified ID  |
+
 <br><br>
 
 # **Get a list of users:** `/api/users/`
