@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const States = require('../states/states-model.js');
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     States.find()
         .then(states => {
             res.status(200).json(states)

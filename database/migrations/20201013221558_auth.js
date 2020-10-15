@@ -39,7 +39,6 @@ return knex.schema
             .onDelete('CASCADE')
             .onUpdate('CASCADE');
     })
-
    
 };
   
