@@ -20,8 +20,8 @@ router.put('/:id', (req, res) => {
     const changes = req.body;
 
     Users.findById(id)
-        .then(user => {
-            if(user) {
+        .then((user) => {
+            if(req.decodedToken && req.decodedToken.subject === user.id) {
                 Users.update(changes, id)
                     .then(updatedUser => {
                         res.status(201).json({
@@ -31,7 +31,7 @@ router.put('/:id', (req, res) => {
                     })
             } else {
                 res.status(404).json({
-                    message: 'That user does not exist in the database',
+                    message: 'You can not update that user'
                 })
             }
         })
