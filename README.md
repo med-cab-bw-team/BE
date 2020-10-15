@@ -56,9 +56,9 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
     {...}
 ]
 ```
----
 <br><br>
 
+---
 # **Auth Routes**
 | Table     | Method    | Endpoint              | Description                   |
 |---        |---        |---                    |---                            |
@@ -88,8 +88,8 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 	"username": "srogan",
 	"password": "password",
 	"email": "seth@test.com",
-	"currentCity": "Indianapolis",
-	"state_abbreviation": "IN"
+	"currentCity": "New York",
+	"state_abbreviation": "NY"
 }
 ```
 
@@ -136,7 +136,7 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 
 ----------
 
-# User Routes
+# **User Routes**
 | Table     | Method    | Endpoint              | Description                       |
 |---        |---        |---                    |---                                |
 | `users`   | GET       |`/api/users/`          | Returns a list of users           |
@@ -174,26 +174,32 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 |---                    |---        |---                |---                                |
 |`Content-Type`         | string    | Yes               | application/JSON                  |
 |`authorization`        | string    | Yes               | JSON Web Token                    |
+
 <br>
 
 ### **Request Body:**
+The required can be updated but can not be updated to be null. Trying to update a user to be `null` will result in a 400 bad request error. To authenticate a user, the body _must_ include the required fields.
 | Name                  | Type      | Required          | Description                       |
 |---                    |---        |---                |---                                |
-|`firstName`            | string    | No                |                                   |
-|`lastName`             | string    | No                |                                   |
-|`username`             | string    | Yes               |_Must Be Unique_                   |
+|`username`             | string    | Yes               |                                   |
 |`email`                | string    | Yes               |                                   |
 |`password`             | string    | Yes               |                                   |
-|`currentCity`          | string    | No                |                                   |
 |`state_abbreviation`   | string    | Yes               |_2 Letter State Abbreviation_      |
+|`firstName`            | string    | No                |                                   |
+|`lastName`             | string    | No                |                                   |
+|`currentCity`          | string    | No                |                                   |
+
 <br><br>
 
 ### **Code Example**
 ```json
 {
-    "email": "itworked!@updated.com",
-    "currentCity": "Chicago",
-    "state_abbreviation": "IL"
+	"username": "srogan", // REQUIRED
+	"email": "seth@test.com", // REQUIRED
+	"password": "password", // REQUIRED
+	"state_abbreviation": "IL", // REQUIRED
+	"currentCity": "Chicago"
+
 }
 ```
 
@@ -206,6 +212,23 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 
 `404:`
 > User is not found or you are not authorized to update the user. You can only update the user that matches the user inside of the decoded JWT.
+
+`500:`
+>Internal Server Error. This error signifies an issue that you probably can't fix. You wll need to contact the site administrator.
+
+<br><br>
+
+----------
+
+# **State Routes**
+
+| Table     | Method    | Endpoint              | Description                                   |
+|---        |---        |---                    |---                                            |
+| `states`  | GET       |`/api/states/`         | Returns a list of states with abbreviations   |
+
+### **Response**
+`200:`
+> Returns a list of states with abbreviations
 
 `500:`
 >Internal Server Error. This error signifies an issue that you probably can't fix. You wll need to contact the site administrator.
