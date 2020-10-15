@@ -46,13 +46,13 @@ Users: [
 ```
 ### States:
 The endpoint will return an array with a list of states with `name` and `abbreviation`
+
 ```json
 States: [
     {
         name: 'Alabama',
         abbreviation: 'AL'
-    },
-    {...}
+    }
 ]
 ```
 ---
