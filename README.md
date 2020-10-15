@@ -52,7 +52,8 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
     {
         "name": "Alabama",
         "abbreviation": "AL"
-    }
+    },
+    {...}
 ]
 ```
 ---
