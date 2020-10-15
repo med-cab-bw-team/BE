@@ -67,7 +67,8 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 
 <br><br>
 
-# **Register:** `/api//auth/register/`
+# **Register:**
+### **Endpoint:** `/api/auth/register/`
 ### **Request Type:** `POST`
 ### **Request Body:**
 | Name                  | Type      | Required          | Description                       |
@@ -107,7 +108,8 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 ---
 <br><br>
 
-# **Login:** `/api/auth/login/`
+# **Login:**
+### **Endpoint:** `/api/auth/login/`
 ### **Request Type:** `POST`
 ### **Request Body:**
 | Name                  | Type      | Required          | Description                       |
@@ -147,7 +149,8 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 
 <br><br>
 
-# **Get a list of users:** `/api/users/`
+# **Get a list of users:**
+### **Endpoint:** `/api/users/`
 ### **Request Type:** GET
 ### **Request Headers:**
 | Name                  | Type      | Required          | Description                       |
@@ -170,7 +173,8 @@ The endpoint will return an array with a list of states with `name` and `abbrevi
 
 <br><br>
 
-# **Update User:** `/api/users/:id`
+# **Update User:**
+### **Endpoint:** `/api/users/:id`
 ### **Request Type:** `PUT`
 ### **Request Headers:**
 
