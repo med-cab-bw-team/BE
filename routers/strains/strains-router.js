@@ -99,6 +99,22 @@ router.get('/:id/flavors', (req, res) => {
         })
 })
 
+//* GET AN OBJECT WITH STRAIN DESCRIPTION BY STRAIN ID
+router.get('/:id/desc', (req, res) => {
+    const { id } = req.params;
+    const requestOptions = {
+        headers: { accept: 'application/json' },
+    };
+    axios
+        .get(`http://strainapi.evanbusse.com/N9EiJCs/strains/data/desc/${id}`, requestOptions)
+        .then(response => {
+            res.status(200).json(response.data);
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
 //* GET STRAIN BY NAME
 router.get('/strain/:name/', (req, res) => {
     const { name } = req.params;
