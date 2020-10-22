@@ -44,7 +44,7 @@ router.put('/:id', validateUser, (req, res) => {
         })
 })
 
-router.delete('/:id', validateUser, (req, res) => {
+router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
     Users.findById(id)
