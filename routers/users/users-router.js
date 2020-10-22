@@ -44,6 +44,33 @@ router.put('/:id', validateUser, (req, res) => {
         })
 })
 
+router.delete('/:id', validateUser, (req, res) => {
+    const { id } = req.params;
+
+    Users.findById(id)
+        .then((user) => {
+            if(req.decodedToken && req.decodedToken.subject === user.id) {
+                Users.remove(id)
+                    .then(deletedUser => {
+                        res.status(201).json({
+                            message: 'The user has been deleted',
+                            user: deletedUser
+                        });
+                    })
+            } else {
+                res.status(404).json({
+                    message: 'You can not delete that user'
+                })
+            }
+        })
+        .catch( (err) => {
+            res.status(500).json({
+                message: 'Delete user failed. There was an error on the server',
+                error: err
+            })
+        })
+})
+
 
 
 module.exports = router;

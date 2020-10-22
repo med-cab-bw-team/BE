@@ -5,7 +5,8 @@ module.exports = {
     findBy,
     add,
     findById,
-    update
+    update,
+    remove
 }
 
 function find() {
@@ -29,4 +30,10 @@ function update(changes, id) {
     return(
         knex('users').where({ id }).update(changes)
     )
+}
+
+function remove (id) {
+    return knex('users')
+        .where('id', id)
+        .del();
 }
