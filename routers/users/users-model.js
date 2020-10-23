@@ -10,7 +10,7 @@ module.exports = {
 }
 
 function find() {
-    return knex('users').select('id','firstName', 'lastName', 'username', 'email', 'currentCity', 'state_abbreviation')
+    return knex('users').select('id','firstName', 'lastName', 'username', 'email', 'currentCity', 'state_abbreviation', 'recommendation_1', 'recommendation_2')
 }
 
 function findById(id) {

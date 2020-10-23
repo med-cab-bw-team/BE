@@ -38,6 +38,12 @@ return knex.schema
             .inTable('states')
             .onDelete('CASCADE')
             .onUpdate('CASCADE');
+        
+        users.string('recommendation_1')
+            .nullable()
+
+        users.string('recommendation_2')
+            .nullable()
     })
    
 };
