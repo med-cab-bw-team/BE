@@ -16,12 +16,22 @@ router.get('/', (req, res) => {
         })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', validateUpdateUser, (req, res) => {
     const { id } = req.params;
     if(req.decodedToken && req.decodedToken.subject === parseInt(id)) {
         Users.findById(id)
             .then(user => {
-                res.status(200).json(user)
+                res.status(200).json({
+                    id: user.id,
+                    firstName:user.firstName,
+                    lastname:user.lastname,
+                    username:user.username,
+                    email:user.email,
+                    currentCity:user.currentCity,
+                    state_abbreviation:user.state_abbreviation,
+                    recommendation_1:user.recommendation_1,
+                    recommendation_2:user.recommendation_2
+                })
             })
             .catch( (err) => {
                 res.status(500).json({
@@ -32,37 +42,12 @@ router.get('/:id', (req, res) => {
     } else {
         res.status(400).json({message: "You can not do that"})
     }
-    
-       
-
-    // Users.findById(id)
-    //     .then((user) => {
-    //         if(req.decodedToken && req.decodedToken.subject === user.id) {
-    //             Users.update(changes, id)
-    //                 .then(updatedUser => {
-    //                     res.status(201).json({
-    //                         message: 'The user has been updated',
-    //                         user: updatedUser
-    //                     });
-    //                 })
-    //         } else {
-    //             res.status(404).json({
-    //                 message: 'You can not update that user'
-    //             })
-    //         }
-    //     })
-    //     .catch( (err) => {
-    //         res.status(500).json({
-    //             message: 'User update failed. There was an error on the server',
-    //             error: err
-    //         })
-    //     })
 })
 
-router.put('/:id', validateUpdateUser, (req, res) => {
+router.put('/:id', (req, res) => {
     const { id } = req.params;
     const changes = req.body;
-
+    
     Users.findById(id)
         .then((user) => {
             if(req.decodedToken && req.decodedToken.subject === user.id) {
@@ -72,6 +57,12 @@ router.put('/:id', validateUpdateUser, (req, res) => {
                             message: 'The user has been updated',
                             user: updatedUser
                         });
+                    })
+                    .catch((err) => {
+                        res.status(500).json({
+                            messsage: 'There was nothing to update',
+                            error: err
+                        })
                     })
             } else {
                 res.status(404).json({
